@@ -74,10 +74,10 @@
   Módulo ESM que alterna la visibilidad de los bloques `es`/`en` mediante el atributo `hidden` (el mismo mecanismo de T-03) y actualiza el atributo `lang` del documento, sin recargar la página.
   **Hecho cuando:** al activar el selector, todo el texto visible cambia de idioma sin recarga y el `lang` del `<html>` pasa a `en`/`es` correctamente.
   **Resultado:** `assets/js/i18n.js` (ESM: applyLanguage, currentLanguage, toggleLanguage; alterna `hidden` en los 42 bloques data-lang y actualiza `lang`) + `assets/js/main.js` (cablea `#language-toggle` y sincroniza su etiqueta EN/ES). `index.html` carga `main.js` como módulo. Verificado en navegador real con clics: es→en cambia lang a `en`, 21 bloques en visibles/0 ocultos, botón pasa a «ES»; en→es revierte todo (21/21, botón «EN»). Sin recarga de página y sin errores en consola.
-- [ ] **T-13 — Persistencia defensiva de la elección de idioma** *(cubre RF-3, LC-2)*
+- [x] **T-13 — Persistencia defensiva de la elección de idioma** *(cubre RF-3, LC-2)* ✅ 2026-09-08
   Guardar y leer la preferencia con manejo de errores alrededor del acceso al almacenamiento.
   **Hecho cuando:** tras elegir idioma y recargar, la página arranca en el idioma elegido; con el almacenamiento bloqueado, la página arranca en español sin errores visibles.
-
+  **Resultado:** `i18n.js` ampliado con `loadSavedLanguage()`/`saveLanguage()` (clave `portfolio-lang`), ambas con try/catch defensivo: lectura inválida o bloqueada devuelve `null` (→ español por defecto) y guardado bloqueado se ignora en silencio, sin `alert` ni `console.error`. `main.js` aplica `loadSavedLanguage() ?? currentLanguage()`. `toggleLanguage()` ahora guarda la elección. Verificado en navegador: clic → guardado `en`; recarga → arranca en inglés (21 bloques en visibles, botón «ES»); vuelta a español → guardado `es`. Bloqueo de Storage simulado: `getItem`/`setItem` lanzan y el try/catch los captura sin error visible. Consola limpia en todas las pruebas.
 - [ ] **T-14 — Cablear el selector en `main.js` y verificar la posición de lectura** *(cubre RF-2, LC-7)*
   Conectar el control del selector con `i18n.js` y comprobar el comportamiento con la página a media altura.
   **Hecho cuando:** cambiando de idioma con la página a media altura no se produce salto de scroll.
