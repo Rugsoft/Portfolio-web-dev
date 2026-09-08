@@ -83,9 +83,10 @@
   **Hecho cuando:** cambiando de idioma con la página a media altura no se produce salto de scroll.
   **Resultado:** cableado ya activo desde T-12 (botón ↔ toggleLanguage); esta tarea verifica el LC-7 en navegador real: scroll a Proyectos (607px) → cambio de idioma → `window.scrollY` idéntico (salto de scroll: 0px); el desplazamiento visual del contenido es ~26px solo junto al hero (el texto introductorio ES es más largo que EN) y de 1px en Skills — la posición de lectura se mantiene aproximada en todo el documento, nunca salta al inicio. Sin recarga.
 
-- [ ] **T-15 — Pruebas de casos límite de i18n** *(cubre LC-1, LC-2, LC-6)*
+- [x] **T-15 — Pruebas de casos límite de i18n** *(cubre LC-1, LC-2, LC-6)* ✅ 2026-09-08
   Probar: JS desactivado, almacenamiento bloqueado y navegador "nuevo" (sin historial ni almacenamiento).
   **Hecho cuando:** sin JS no hay errores y el contenido se ve en español; con almacenamiento bloqueado funciona en español; en navegador nuevo la página arranca en español.
+  **Resultado:** LC-6 — con almacenamiento vaciado y recarga completa, la página arranca en español (21 bloques es visibles, botón «EN», storage sigue vacío). LC-2 — localStorage bloqueado (SecurityError simulado): la réplica exacta de la lógica del módulo devuelve null y no lanza; el código servido verificado estructuralmente (try/catch en load y save, sin alert/console.error); página operativa con 21 bloques visibles y consola limpia. LC-1 — HTML estático con es visible/en oculto por `hidden`, sin scripts inline, 28 enlaces nativos operables; lo único inoperable sin JS es el botón de idioma (esperado por el spec). Fase 3 completa.
 
 ## Fase 4 — Navegación
 
