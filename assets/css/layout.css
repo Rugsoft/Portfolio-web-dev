@@ -97,3 +97,18 @@ footer {
   }
 }
 
+/* Pantallas grandes (≥75em / 1200 px): contenedor más ancho,
+   grid de proyectos a 2 columnas amplias y hero más compacto */
+@media (min-width: 75em) {
+  .container {
+    max-width: 72rem;
+  }
+
+  #proyectos {
+    column-gap: var(--space-5);
+  }
+
+  #inicio {
+    max-width: 46rem;
+  }
+}

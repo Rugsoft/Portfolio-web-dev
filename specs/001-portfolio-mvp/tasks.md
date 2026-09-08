@@ -62,9 +62,11 @@
   **Hecho cuando:** los componentes son distinguibles visualmente y el foco del teclado es claramente visible en todos los elementos interactivos.
 
   **Resultado:** `assets/css/components.css` creado e importado en `main.css`: nav en flex con hover con fondo, botón de idioma con borde de acento y hover invertido, CTAs del hero tipo botón, tarjetas de proyecto con fondo alternante/borde/radius y tags como chips, skills con marcador ▸ de acento, y refuerzo de foco sobre fondos oscuros. Regla global `:focus-visible` (3px acento) confirmada en CSSOM; 4 reglas `:hover` activas. Sin imágenes aún: requisito `alt` se mantiene para cuando las haya. Verificado en navegador real (captura incluida).
-- [ ] **T-11 — Escritorio y verificación de contraste** *(cubre RNF-1, RNF-3)*
+- [x] **T-11 — Escritorio y verificación de contraste** *(cubre RNF-1, RNF-3)* ✅ 2026-09-08
   Media queries hacia pantallas grandes (grid ampliado) y revisión de contraste de texto/fondo. Comprobar también el peso de la página: imágenes optimizadas, sin recursos innecesarios (RNF-2).
   **Hecho cuando:** el layout se ve correcto a 375 px y en escritorio (≥1200 px), las combinaciones de color cumplen contraste suficiente para texto normal y el peso total de la página se mantiene reducido.
+
+  **Resultado:** `layout.css` ampliado con media query ≥75em (1200 px): contenedor a 72rem y hero compacto. Contraste verificado con cálculo WCAG 2.1 real sobre los tokens: todas las combinaciones superan AA (texto 14.56:1, secundario 6.46:1, enlaces 6.67:1, texto sobre tarjetas 13.44:1, texto sobre tags 12.45:1, blanco sobre botón hover 6.67:1). Peso total (RNF-2): HTML 20.2 KB + 3.4 KB CSS = ~23.6 KB, 0 imágenes, 4 recursos. Media queries 48em/75em confirmadas en CSSOM (4+3 reglas); base móvil verificada en T-09. Fase 2 completa.
 
 ## Fase 3 — JavaScript i18n
 
