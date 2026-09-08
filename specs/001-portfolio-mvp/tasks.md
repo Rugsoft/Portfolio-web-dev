@@ -97,9 +97,10 @@
   **Hecho cuando:** el menú abre y cierra por clic y por teclado, el estado expandido se declara correctamente y todos sus enlaces son accesibles por tabulación.
   **Resultado:** HTML: botón `#nav-toggle` (3 barras `aria-hidden`, `aria-expanded`, `aria-controls`, aria-label dinámico) + `nav#primary-nav`. JS en `main.js`: alterna `aria-expanded`/`is-open`, Escape cierra y devuelve el foco al botón, clic en enlace cierra el menú; clase `js-enabled` en `<html>` habilita el plegado. CSS: hamburguesa solo en móvil (≤47.99em), panel colapsa solo bajo `.js-enabled` (sin JS la nav queda visible — RF-7), en escritorio hamburguesa oculta. Verificado en navegador (439px): clic abre (aria-expanded=true, panel block), clic cierra, Escape cierra y devuelve foco, clic en enlace cierra y navega; sin JS el panel es visible con enlaces operables.
 
-- [ ] **T-17 — Enlaces en línea en escritorio y fallback sin JS** *(cubre RF-1, RF-7)*
+- [x] **T-17 — Enlaces en línea en escritorio y fallback sin JS** *(cubre RF-1, RF-7)* ✅ 2026-09-08
   Media query de escritorio que muestra los enlaces en línea y oculta el botón hamburguesa; sin JavaScript, los enlaces permanecen visibles.
   **Hecho cuando:** en escritorio no aparece el hamburguesa y, sin JavaScript, la navegación es visible y operable en cualquier ancho de pantalla.
+  **Resultado:** `components.css` ampliado con media query ≥48em: `#nav-toggle { display: none }` y `#primary-nav { display: block }` (confirmado en CSSOM y en el archivo servido; el enfoque escritorio-no-plegable hace innecesario otro fallback ahí). Fallback sin JS verificado en móvil: al quitar `.js-enabled`, la nav vuelve a `display: block` con los 4 enlaces ancla operables. Captura: hamburguesa + botón idioma en móvil, panel colapsado por defecto. Fase 4 completa.
 
 ## Fase 5 — Verificación y publicación
 
