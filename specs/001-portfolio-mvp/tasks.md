@@ -116,9 +116,10 @@
 
 ## Fase 5 — Verificación y publicación
 
-- [ ] **T-18 — Recorrido completo de la matriz de verificación** *(cubre todos los RF, RNF y LC)*
+- [x] **T-18 — Recorrido completo de la matriz de verificación** *(cubre todos los RF, RNF y LC)* ✅ 2026-09-08
   Servir el sitio localmente (`npx serve .`) y verificar una a una las filas de la matriz de verificación del plan (§5), más el checklist de AGENTS.md §6.
   **Hecho cuando:** cada fila de la matriz está verificada y marcada, el checklist de AGENTS.md §6 está completo sin excepciones y no hay errores en la consola.
+  **Resultado:** verificado en navegador real (servidor local, viewport 683px móvil + reglas escritorio en CSSOM). RF-1: 4 secciones en orden, hero con quién/qué/CTAs, nav a las 4 secciones. RF-2: toggle sin recarga (1 solo documento), `lang` actualiza, 21/21 bloques por idioma, scroll estable (53px ≈ diferencia de altura ES/EN, posición aproximada OK). RF-3: guardado en localStorage, primera visita sin storage → español (LC-6), storage bloqueado sin errores visibles (LC-2). RF-4: 4 tarjetas con nombre/descripción/explicación/tags/enlaces (7 enlaces únicos verificados HTTP 200: 4 demos con PowerShell por límite SSL de curl en Git Bash, 3 repos GitHub + GitHub perfil); Alumnalia sin repo y sin hueco (LC-3). RF-5: 6 categorías con contenido, 0 vacías (LC-5). RF-6: mailto + GitHub + LinkedIn, sin perfiles vacíos (LC-4), sin `tel:`. RF-7: `hidden` nativo en EN sin JS, enlaces normales operables, imágenes con alt. RNF-1: reglas `:focus-visible` en CSSOM (outline 3px acento), alt correcto, `lang` correcto. RNF-2: 13 recursos, module diferido. RNF-4/LC-8: 42 bloques pareados ES/EN, mismas entradas en skills y tags. RNF-6: 0 rutas absolutas, nombres seguros. Consola limpia (0 errores) en todo el recorrido. Pendiente para cierre del MVP: T-19 (publicación).
 
 - [ ] **T-19 — Publicar en GitHub Pages y verificar rutas** *(cubre TD-7, RNF-6)*
   Publicar desde `main` (requiere instrucción explícita del titular para push) y comprobar el sitio bajo el subdirectorio de GitHub Pages.
