@@ -21,25 +21,30 @@
   **Hecho cuando:** la página se sirve con un servidor estático, la estructura semántica es correcta y las 4 secciones existen con sus identificadores.
   **Resultado:** `index.html` creado con estructura semántica completa (`header`/`nav`/`main`/`footer`, 4 secciones con ids, botón de idioma presente para cablear en T-12/T-14). Verificado con `python -m http.server`: HTTP 200 y las 4 secciones presentes. Sin CSS/JS referenciados todavía (se crean en T-08+/T-12+) para evitar 404.
 
-- [ ] **T-03 — Contenido del hero en ambos idiomas** *(cubre RF-1, RF-7)*
+- [x] **T-03 — Contenido del hero en ambos idiomas** *(cubre RF-1, RF-7)* ✅ 2026-09-08
   Quién es el autor, a qué se dedica y llamada a la acción hacia proyectos/contacto, duplicado en bloques `es`/`en` (bloque español visible por defecto; el inglés oculto con el atributo nativo `hidden`, sin depender de CSS).
   **Hecho cuando:** sin JavaScript, el hero se ve completo en español y el texto inglés existe en el documento oculto mediante `hidden`.
+  **Resultado:** hero bilingüe añadido con datos reales de [`misdatos.md`](misdatos.md): nombre, rol, presentación (trayectoria electrónica → desarrollo web, SDD), objetivo profesional y 2 CTAs (proyectos/contacto). Bloque `es` visible por defecto y bloque `en` con contenido traducido equivalente oculto vía atributo `hidden` + `lang` correcto en cada bloque. Verificado: HTTP 200 y ambos bloques presentes (`data-lang="es"` visible, `data-lang="en" hidden`). Sin CSS ni JS necesarios para el comportamiento.
 
-- [ ] **T-04 — Sección de proyectos: tarjetas bilingües** *(cubre RF-4, LC-3)*
+- [x] **T-04 — Sección de proyectos: tarjetas bilingües** *(cubre RF-4, LC-3)* ✅ 2026-09-08
   Una tarjeta por proyecto real de T-01: nombre, descripción, explicación, tags, enlaces (`repoUrl` siempre; `demoUrl` solo si existe, sin hueco visual si falta) e imágenes opcionales con `alt` descriptivo.
   **Hecho cuando:** cada tarjeta del HTML contiene los campos completos en `es` y `en`, y los enlaces apuntan a repos/demo reales (verificados que existen).
+  **Resultado:** 4 tarjetas (`article.project-card`) añadidas con datos reales de [`misdatos.md`](misdatos.md): Alumnalia (demo verificada, sin repo — privado, LC-3), Movie Trailer Hub, GeekVault y Reservar Llocs (los 3 con repo+demo). Cada tarjeta con bloque `es` visible y bloque `en` oculto vía `hidden`, descripción, explicación (problema/stack/implementación), tags y enlaces con `target="_blank" rel="noopener"`. Sin imágenes todavía (no se aportaron; si se añaden irán con `alt` descriptivo). Verificado: HTTP 200, 4 tarjetas, 12 bloques de idioma (4 tarjetas × 2 + título de sección + hero), 7 enlaces externos únicos.
 
-- [ ] **T-05 — Sección de skills bilingüe agrupada** *(cubre RF-5, LC-5)*
+- [x] **T-05 — Sección de skills bilingüe agrupada** *(cubre RF-5, LC-5)* ✅ 2026-09-08
   Skills de T-01 agrupadas por categorías, solo con tecnologías de uso real.
   **Hecho cuando:** el HTML agrupa las skills por categoría en ambos idiomas y no existe ninguna categoría vacía renderizada.
+  **Resultado:** 6 categorías reales de [`misdatos.md`](misdatos.md) añadidas como `div.skill-group` (Front-End; Back-End y bases de datos; Arquitectura, integraciones y librerías; Otros lenguajes; Herramientas y flujo de trabajo; Idiomas). Cada categoría con título y lista `ul.skill-list` en `es` (visible) y `en` (oculto con `hidden`), mismo mecanismo TD-3. Sin categorías vacías y sin tecnologías infladas (solo las reales). Verificado: HTTP 200, 6 grupos, 12 listas (6×2), títulos correctos en ambos idiomas.
 
-- [ ] **T-06 — Sección de contacto bilingüe** *(cubre RF-6, LC-4)*
+- [x] **T-06 — Sección de contacto bilingüe** *(cubre RF-6, LC-4)* ✅ 2026-09-08
   Email como enlace `mailto:` y enlaces solo a los perfiles que existen en T-01.
   **Hecho cuando:** el enlace de email abre el cliente de correo con la dirección correcta y no aparece ningún perfil sin URL.
+  **Resultado:** sección de contacto bilingüe con los 3 elementos decididos en T-01: `mailto:futuroelectronico@gmail.com`, GitHub (Rugsoft) y LinkedIn (URL con porcentaje codificado intacta). **Sin teléfono** (decisión: no publicar) y **sin web personal** (decisión: no incluir) — LC-4 aplicado. Cada idioma con su bloque `es`/`en` oculto por `hidden` y texto introductorio traducido. Verificado: HTTP 200, 3 enlaces por idioma, 0 enlaces `tel:`.
 
-- [ ] **T-07 — Verificar la página completa sin JavaScript** *(cubre RF-7, LC-1)*
+- [x] **T-07 — Verificar la página completa sin JavaScript** *(cubre RF-7, LC-1)* ✅ 2026-09-08
   Recorrido de la página con JS desactivado.
   **Hecho cuando:** con JavaScript desactivado se ve todo el contenido en español (el inglés permanece oculto gracias al atributo `hidden`, sin depender de CSS), todos los enlaces (proyectos y contacto) funcionan y no hay huecos vacíos ni errores visibles.
+  **Resultado:** verificado en navegador real con la página renderizada (la página no tiene ningún `<script>`: 0 tags, consola y red vacías — sin errores). Contenido completo en español visible: las 4 secciones con contenido (inicio 1.541 chars, proyectos 6.294, skills 3.430, contacto 561). Los 21 bloques `en` ocultos vía `hidden` y los 21 `es` visibles, sin depender de CSS. 28 enlaces operables: 8 anclas internas válidas, 18 externos (repos/demos) y 2 mailto. Sin secciones vacías ni huecos. `lang` del documento: `es`.
 
 ## Fase 2 — CSS
 
