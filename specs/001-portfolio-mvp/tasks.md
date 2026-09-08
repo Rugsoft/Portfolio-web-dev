@@ -78,9 +78,10 @@
   Guardar y leer la preferencia con manejo de errores alrededor del acceso al almacenamiento.
   **Hecho cuando:** tras elegir idioma y recargar, la página arranca en el idioma elegido; con el almacenamiento bloqueado, la página arranca en español sin errores visibles.
   **Resultado:** `i18n.js` ampliado con `loadSavedLanguage()`/`saveLanguage()` (clave `portfolio-lang`), ambas con try/catch defensivo: lectura inválida o bloqueada devuelve `null` (→ español por defecto) y guardado bloqueado se ignora en silencio, sin `alert` ni `console.error`. `main.js` aplica `loadSavedLanguage() ?? currentLanguage()`. `toggleLanguage()` ahora guarda la elección. Verificado en navegador: clic → guardado `en`; recarga → arranca en inglés (21 bloques en visibles, botón «ES»); vuelta a español → guardado `es`. Bloqueo de Storage simulado: `getItem`/`setItem` lanzan y el try/catch los captura sin error visible. Consola limpia en todas las pruebas.
-- [ ] **T-14 — Cablear el selector en `main.js` y verificar la posición de lectura** *(cubre RF-2, LC-7)*
+- [x] **T-14 — Cablear el selector en `main.js` y verificar la posición de lectura** *(cubre RF-2, LC-7)* ✅ 2026-09-08
   Conectar el control del selector con `i18n.js` y comprobar el comportamiento con la página a media altura.
   **Hecho cuando:** cambiando de idioma con la página a media altura no se produce salto de scroll.
+  **Resultado:** cableado ya activo desde T-12 (botón ↔ toggleLanguage); esta tarea verifica el LC-7 en navegador real: scroll a Proyectos (607px) → cambio de idioma → `window.scrollY` idéntico (salto de scroll: 0px); el desplazamiento visual del contenido es ~26px solo junto al hero (el texto introductorio ES es más largo que EN) y de 1px en Skills — la posición de lectura se mantiene aproximada en todo el documento, nunca salta al inicio. Sin recarga.
 
 - [ ] **T-15 — Pruebas de casos límite de i18n** *(cubre LC-1, LC-2, LC-6)*
   Probar: JS desactivado, almacenamiento bloqueado y navegador "nuevo" (sin historial ni almacenamiento).
