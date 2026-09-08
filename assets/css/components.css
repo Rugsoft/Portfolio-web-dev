@@ -14,6 +14,35 @@ header {
   gap: var(--space-2);
 }
 
+/* --- Botón hamburguesa (T-16, TD-6) ---
+   Oculto por defecto: en escritorio la nav es en línea. En móvil
+   (media query más abajo) se muestra y el panel colapsa. */
+#nav-toggle {
+  display: none;
+  background: none;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius);
+  padding: var(--space-1);
+  cursor: pointer;
+}
+
+.hamburger-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px;
+}
+
+.hamburger-bar {
+  width: 20px;
+  height: 2px;
+  background-color: var(--color-accent);
+}
+
+#nav-toggle:hover .hamburger-bar {
+  background-color: var(--color-accent-hover);
+}
+
 nav ul {
   display: flex;
   flex-wrap: wrap;
@@ -160,7 +189,37 @@ nav a:hover {
    de botones con estado hover (fondo acento).
    ============================================ */
 #language-toggle:focus-visible,
-.hero-actions a:focus-visible {
+.hero-actions a:focus-visible,
+#nav-toggle:focus-visible {
   outline-color: var(--color-accent-hover);
   outline-offset: 3px;
+}
+
+/* ============================================
+   Móvil: hamburguesa visible, panel colapsado (T-16, TD-6)
+   Sin JavaScript (RF-7): el HTML nunca tiene la clase .js-enabled,
+   así que el panel permanece visible y operable — el JS la añade
+   al cargar para habilitar el plegado.
+   ============================================ */
+@media (max-width: 47.99em) {
+  #nav-toggle {
+    display: flex;
+  }
+
+  /* Solo colapsa el panel si JS está activo (.js-enabled) */
+  .js-enabled #primary-nav:not(.is-open) {
+    display: none;
+  }
+
+  .js-enabled #primary-nav.is-open {
+    display: block;
+    flex-basis: 100%;
+  }
+
+  .js-enabled #primary-nav.is-open ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+    padding-block: var(--space-2);
+  }
 }

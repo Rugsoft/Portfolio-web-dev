@@ -11,7 +11,17 @@
 <body>
   <div class="container">
   <header>
-    <nav aria-label="Navegación principal">
+    <!-- T-16 (TD-6): hamburguesa visible solo en móvil (CSS); sin JS el nav
+         permanece visible y operable en cualquier ancho (RF-7). -->
+    <button type="button" id="nav-toggle" aria-expanded="false" aria-controls="primary-nav"
+            aria-label="Abrir menú de navegación">
+      <span class="hamburger-box" aria-hidden="true">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </span>
+    </button>
+    <nav id="primary-nav" aria-label="Navegación principal">
       <ul>
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#proyectos">Proyectos</a></li>
@@ -19,7 +29,7 @@
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
-    <!-- Selector de idioma ES/EN: el comportamiento se cablea en T-12/T-14 (plan TD-3) -->
+    <!-- Selector de idioma ES/EN cableado en T-12/T-14 (plan TD-3) -->
     <button type="button" id="language-toggle" aria-label="Cambiar idioma">EN</button>
   </header>
 

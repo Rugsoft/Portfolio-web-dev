@@ -1,7 +1,7 @@
 /* ============================================
    main.js — punto de entrada de JavaScript
-   T-12: cablea el selector de idioma con i18n.js.
-   La navegación (menú hamburguesa) llega en T-16.
+   T-12/T-13: selector de idioma con i18n.js.
+   T-16: menú hamburguesa accesible (TD-6).
    ============================================ */
 
 import {
@@ -31,3 +31,47 @@ toggleButton.addEventListener("click", () => {
 });
 
 syncButtonLabel();
+
+/* ============================================
+   Menú hamburguesa (T-16, TD-6)
+   - aria-expanded declara el estado del panel.
+   - Escape cierra y devuelve el foco al botón.
+   - Cada enlace del menú lo cierra al navegar.
+   - Sin JavaScript el panel permanece visible (RF-7):
+     el JS solo añade la capacidad de plegarlo.
+   ============================================ */
+
+const navToggle = document.getElementById("nav-toggle");
+const primaryNav = document.getElementById("primary-nav");
+
+// Habilita el plegado: sin JS el CSS mantiene la nav visible (RF-7).
+document.documentElement.classList.add("js-enabled");
+
+function setMenu(open) {
+  navToggle.setAttribute("aria-expanded", String(open));
+  navToggle.setAttribute(
+    "aria-label",
+    open ? "Cerrar menú de navegación" : "Abrir menú de navegación"
+  );
+  primaryNav.classList.toggle("is-open", open);
+}
+
+navToggle.addEventListener("click", () => {
+  const isOpen = navToggle.getAttribute("aria-expanded") === "true";
+  setMenu(!isOpen);
+});
+
+// Escape cierra el menú y devuelve el foco al botón (RNF-1).
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape") return;
+  if (navToggle.getAttribute("aria-expanded") !== "true") return;
+  setMenu(false);
+  navToggle.focus();
+});
+
+// Navegar con un enlace del menú lo cierra.
+primaryNav.addEventListener("click", (event) => {
+  if (event.target.closest("a")) {
+    setMenu(false);
+  }
+});

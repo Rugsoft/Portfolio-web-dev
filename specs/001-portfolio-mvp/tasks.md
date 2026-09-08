@@ -92,9 +92,10 @@
 
 > **Bugfix 2026-09-08 (hallado al verificar skills bilingües):** las 6 listas `.skill-list` del inglés se mostraban pese a tener `hidden`: la regla `.skill-list { display: flex }` de components.css (especificidad de autor) anulaba el `display: none` del estilo UA de `[hidden]`. Fix en `base.css`: `[hidden] { display: none !important; }` con comentario explicativo. Re-verificado en navegador: 0 bloques en visibles en español, cambio bidireccional correcto (21/21 en cada idioma) y skills sin duplicados.
 
-- [ ] **T-16 — Menú hamburguesa accesible en móvil** *(cubre RF-1, RNF-1, TD-6)*
+- [x] **T-16 — Menú hamburguesa accesible en móvil** *(cubre RF-1, RNF-1, TD-6)* ✅ 2026-09-08
   Botón hamburguesa con `aria-expanded`, panel de enlaces que se muestra/oculta, cierre con Escape y navegación completa por teclado.
   **Hecho cuando:** el menú abre y cierra por clic y por teclado, el estado expandido se declara correctamente y todos sus enlaces son accesibles por tabulación.
+  **Resultado:** HTML: botón `#nav-toggle` (3 barras `aria-hidden`, `aria-expanded`, `aria-controls`, aria-label dinámico) + `nav#primary-nav`. JS en `main.js`: alterna `aria-expanded`/`is-open`, Escape cierra y devuelve el foco al botón, clic en enlace cierra el menú; clase `js-enabled` en `<html>` habilita el plegado. CSS: hamburguesa solo en móvil (≤47.99em), panel colapsa solo bajo `.js-enabled` (sin JS la nav queda visible — RF-7), en escritorio hamburguesa oculta. Verificado en navegador (439px): clic abre (aria-expanded=true, panel block), clic cierra, Escape cierra y devuelve foco, clic en enlace cierra y navega; sin JS el panel es visible con enlaces operables.
 
 - [ ] **T-17 — Enlaces en línea en escritorio y fallback sin JS** *(cubre RF-1, RF-7)*
   Media query de escritorio que muestra los enlaces en línea y oculta el botón hamburguesa; sin JavaScript, los enlaces permanecen visibles.
