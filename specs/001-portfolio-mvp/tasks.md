@@ -109,6 +109,11 @@
   **Hecho cuando:** los nuevos tokens cumplen contraste AA medido programáticamente, la página no tiene overflow horizontal en móvil, el toggle ES/EN sigue funcionando (RF-2) y sin JS todo el contenido en español es visible (RF-7).
   **Resultado:** plan registrado en `specs/001-portfolio-mvp/002-restyle-terminal-teal/plan.md`. Contraste verificado (WCAG 2.1 calculado): texto/bg 14.38:1, muted/bg 6.92:1, accent/bg 11.74:1, ink/botón 10.89:1, chips 6.64:1 — todos ≥ AA. Toggle ES/EN verificado en navegador (21/21 bloques por idioma, `lang` y etiqueta del botón correctos). Sin overflow horizontal (scrollWidth ≤ innerWidth). Consola limpia; fuentes Inter y JetBrains Mono cargadas (document.fonts). Peso total transferido ≈ 17.8 KB + fuentes del CDN. Mecanismo `[hidden]{display:none!important}` intacto (bloques EN ocultos verificados).
 
+- [x] **R-02 — Imágenes de los proyectos en las tarjetas** *(RF-4 alt, RNF-2)* ✅ 2026-09-08
+  Cada tarjeta de proyecto muestra una imagen de la web realizada dentro de `figure.project-media` con marco 16:9 (`aspect-ratio` + `object-fit: cover`), borde hairline y realce al hover. Capturas reales aportadas por el titular e integradas como PNG en `assets/img/` (`alumnalia.png`, `movie-trailer-hub.png`, `geekvault.png`, `reservar-llocs.png`); los placeholders SVG se eliminaron.
+  **Hecho cuando:** las 8 `img` (4 proyectos × ES/EN) tienen `alt` descriptivo bilingüe, `loading="lazy"`, dimensiones explícitas y rutas relativas sin 404.
+  **Resultado:** 8 imágenes PNG cargadas (HTTP 200), alt bilingüe verificado, ratio 16:9 exacto (1.78), sin overflow horizontal, consola limpia, toggle ES/EN intacto. Peso total de imágenes ≈ 3.8 MB (geekvault 2.1 MB es la mayor) — candidato a optimización si RNF-2 se vuelve estricto.
+
 ## Fase 5 — Verificación y publicación
 
 - [ ] **T-18 — Recorrido completo de la matriz de verificación** *(cubre todos los RF, RNF y LC)*

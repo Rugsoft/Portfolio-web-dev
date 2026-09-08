@@ -216,6 +216,29 @@ nav a:hover {
   margin-bottom: var(--space-1);
 }
 
+/* --- Imagen del proyecto (R-02) ---
+   Marco 16:9 con hairline; la imagen real (PNG/JPG) se recorta
+   con object-fit: cover sin deformarse. Los SVG placeholder ya
+   tienen el mismo aspecto, así que la sustitución no mueve nada. */
+.project-media {
+  margin: 0 0 var(--space-3);
+}
+
+.project-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-bg-terminal);
+}
+
+.project-card:hover .project-media img {
+  border-color: var(--color-accent);
+}
+
 .project-description {
   color: var(--color-text);
   font-weight: 600;
