@@ -24,14 +24,54 @@ main {
 
 /* --- Secciones --- */
 section[id] {
-  padding-block: var(--space-5);
+  padding-block: var(--space-6);
   border-top: 1px solid var(--color-border);
 }
 
-/* La primera sección (hero) no lleva borde superior */
+/* Hueco real entre secciones: el separador lo necesita para poder
+   centrarse en él (sin margen, el border pega con el bloque anterior). */
+main section[id]:not(:first-of-type) {
+  margin-block-start: var(--space-5);
+}
+
+/* Separador decorativo estilo terminal: reemplaza visualmente el
+   border-top con una línea de comentario mono (sin añadir HTML:
+   se inyecta vía ::before, accesible porque es puro decorado). */
+section[id] + section[id],
+#skills,
+#contacto {
+  position: relative;
+}
+
+section[id] + section[id]::before,
+#skills::before,
+#contacto::before {
+  content: "///";
+  position: absolute;
+  /* Centrado real en el hueco de 40px (space-5) entre bloques.
+     line-height:1 hace que la caja mida lo mismo que el glifo y
+     -50% del margen lo deja equidistante del bloque anterior y del border. */
+  top: calc(-1 * (var(--space-5) / 2));
+  line-height: 1;
+  transform: translateY(-50%);
+  inset-inline-start: 0;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  letter-spacing: 0.4em;
+  color: var(--color-accent);
+  opacity: 0.55;
+  background-color: var(--color-bg);
+  padding-inline-end: var(--space-2);
+}
+
+/* La primera sección (hero) no lleva borde superior ni separador */
 main section:first-of-type {
   border-top: none;
   padding-block-start: var(--space-4);
+}
+
+main section:first-of-type::before {
+  content: none;
 }
 
 /* --- Hero: superficie profunda (canvas-dark del tema) --- */
@@ -46,18 +86,24 @@ main section:first-of-type {
   margin-block-start: var(--space-2);
 }
 
+/* Los CTAs respiran después de la terminal */
+.hero-actions {
+  margin-block-start: var(--space-4);
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
 }
 
-/* --- Proyectos: tarjetas apiladas en móvil --- */
+/* --- Proyectos: tarjetas apiladas en móvil, con respiro entre ellas --- */
 #proyectos .project-card {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
   padding-block: var(--space-4);
+  margin-block-end: var(--space-4);
 }
 
 /* --- Skills: grupos apilados en móvil --- */
@@ -87,15 +133,21 @@ footer {
     padding-inline: var(--space-4);
   }
 
+  /* Respiro extra en escritorio: secciones más aireadas que en móvil */
   section[id] {
-    padding-block: var(--space-6);
+    padding-block: calc(var(--space-6) + var(--space-2));
   }
 
   /* Proyectos en cuadrícula de 2 columnas */
   #proyectos {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: var(--space-4);
+    gap: var(--space-5) var(--space-4);
+  }
+
+  /* En grid, el margen inferior de móvil se anula: el gap del grid manda */
+  #proyectos .project-card {
+    margin-block-end: 0;
   }
 
   #proyectos h2 {
@@ -111,7 +163,7 @@ footer {
   }
 
   #proyectos {
-    column-gap: var(--space-5);
+    gap: var(--space-6) var(--space-5);
   }
 
   #inicio > [data-lang] {
