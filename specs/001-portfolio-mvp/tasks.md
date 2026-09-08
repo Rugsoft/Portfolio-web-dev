@@ -70,10 +70,10 @@
 
 ## Fase 3 — JavaScript i18n
 
-- [ ] **T-12 — `i18n.js`: alternar bloques de idioma y actualizar `lang`** *(cubre RF-2)*
+- [x] **T-12 — `i18n.js`: alternar bloques de idioma y actualizar `lang`** *(cubre RF-2)* ✅ 2026-09-08
   Módulo ESM que alterna la visibilidad de los bloques `es`/`en` mediante el atributo `hidden` (el mismo mecanismo de T-03) y actualiza el atributo `lang` del documento, sin recargar la página.
   **Hecho cuando:** al activar el selector, todo el texto visible cambia de idioma sin recarga y el `lang` del `<html>` pasa a `en`/`es` correctamente.
-
+  **Resultado:** `assets/js/i18n.js` (ESM: applyLanguage, currentLanguage, toggleLanguage; alterna `hidden` en los 42 bloques data-lang y actualiza `lang`) + `assets/js/main.js` (cablea `#language-toggle` y sincroniza su etiqueta EN/ES). `index.html` carga `main.js` como módulo. Verificado en navegador real con clics: es→en cambia lang a `en`, 21 bloques en visibles/0 ocultos, botón pasa a «ES»; en→es revierte todo (21/21, botón «EN»). Sin recarga de página y sin errores en consola.
 - [ ] **T-13 — Persistencia defensiva de la elección de idioma** *(cubre RF-3, LC-2)*
   Guardar y leer la preferencia con manejo de errores alrededor del acceso al almacenamiento.
   **Hecho cuando:** tras elegir idioma y recargar, la página arranca en el idioma elegido; con el almacenamiento bloqueado, la página arranca en español sin errores visibles.
