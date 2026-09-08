@@ -1,28 +1,35 @@
 /* ============================================
    base.css — reset mínimo y tokens de diseño
-   T-08 · Plan TD-5 (tema claro único, preparado para tema oscuro)
+   Restyle «Terminal Teal» (spec 002): tema oscuro inspirado en el
+   proyecto Stitch «Developer Portfolio Design System».
    ============================================ */
 
 /* --- Tokens de diseño (custom properties en :root) --- */
 :root {
-  /* Colores — tema claro */
-  --color-bg: #ffffff;              /* fondo general */
-  --color-bg-alt: #f4f6f8;          /* fondo alternante (secciones, tarjetas) */
-  --color-text: #1c2b33;            /* texto principal (contraste 13.9:1 sobre bg) */
-  --color-text-muted: #52606d;      /* texto secundario (contraste 6.9:1) */
-  --color-accent: #0b5cad;          /* acento / enlaces (contraste 6.4:1) */
-  --color-accent-hover: #08436f;    /* acento hover (contraste 9.4:1) */
-  --color-border: #d5dbe1;          /* bordes sutiles */
-  --color-tag-bg: #e8eef4;          /* fondo de etiquetas/chips */
+  /* Colores — tema oscuro «Terminal Teal» (contrastes verificados en la
+     verificación del restyle; ver specs/001-portfolio-mvp/002-restyle-terminal-teal/) */
+  --color-bg: #04151f;              /* fondo general (surface) */
+  --color-bg-deep: #001e2b;         /* superficies profundas: hero y footer (canvas-dark) */
+  --color-bg-alt: #0c1d28;          /* tarjetas / superficies alternantes */
+  --color-bg-terminal: #00101a;     /* fondo del terminal del hero */
+  --color-text: #d3e5f4;            /* texto principal (13.5:1 sobre bg) */
+  --color-text-muted: #8ba1b2;      /* texto secundario (5.3:1 sobre bg) */
+  --color-accent: #00ed64;          /* acento terminal (10.4:1 sobre bg) */
+  --color-accent-hover: #00b545;    /* acento hover */
+  --color-ink: #001e2b;             /* texto sobre acento (12.5:1 sobre #00ed64) */
+  --color-border: #1c2d38;          /* hairlines */
+  --color-tag-bg: #1c2d38;          /* fondo de chips/etiquetas */
+  --color-tag-text: #a8b3bc;        /* texto de chips (7.2:1 sobre tag-bg) */
 
   /* Tipografía */
-  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --font-size-base: 1rem;           /* 16 px */
   --font-size-sm: 0.875rem;         /* 14 px */
   --font-size-lg: 1.25rem;          /* 20 px */
   --font-size-h3: 1.35rem;
   --font-size-h2: 1.85rem;
-  --font-size-h1: 2.3rem;
+  --font-size-h1: clamp(2.3rem, 1.4rem + 4.5vw, 4.5rem); /* display del tema, tracking negativo */
   --line-height: 1.65;
 
   /* Espaciado (escala modular) */
@@ -35,6 +42,9 @@
 
   /* Otros */
   --radius: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 9999px;
+  --glow-accent: 0 8px 24px -4px rgba(0, 237, 100, 0.12); /* glow sutil de hover */
   --max-width: 62rem;
 }
 
@@ -81,20 +91,26 @@ svg {
 h1,
 h2,
 h3 {
-  line-height: 1.2;
+  line-height: 1.15;
   overflow-wrap: break-word;
 }
 
+/* Tracking negativo tipo display del tema (más notable cuanto mayor) */
 h1 {
   font-size: var(--font-size-h1);
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 h2 {
   font-size: var(--font-size-h2);
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 h3 {
   font-size: var(--font-size-h3);
+  font-weight: 500;
 }
 
 p {
@@ -115,7 +131,7 @@ a:hover {
 /* --- Foco visible obligatorio (RNF-1) --- */
 :focus-visible {
   outline: 3px solid var(--color-accent);
-  outline-offset: 2px;
+  outline-offset: 3px;
   border-radius: 2px;
 }
 
@@ -123,6 +139,12 @@ a:hover {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
   }
 }
 

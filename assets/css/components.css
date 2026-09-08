@@ -1,6 +1,6 @@
 /* ============================================
    components.css — nav, tarjetas de proyecto, skills, contacto
-   T-10 · Estados hover/focus visibles (RNF-1)
+   Restyle «Terminal Teal» (spec 002) · Estados hover/focus visibles (RNF-1)
    ============================================ */
 
 /* ============================================
@@ -46,59 +46,153 @@ header {
 nav ul {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-3);
+  gap: var(--space-2);
 }
 
 nav a {
-  font-weight: 600;
+  font-weight: 500;
+  font-size: var(--font-size-sm);
   text-decoration: none;
+  color: var(--color-text-muted);
   padding: var(--space-1) var(--space-2);
-  border-radius: var(--radius);
+  border-radius: var(--radius-pill);
+  transition: color 150ms ease, background-color 150ms ease;
 }
 
 nav a:hover {
   background-color: var(--color-tag-bg);
-  color: var(--color-accent-hover);
+  color: var(--color-accent);
 }
 
-/* Botón de idioma */
+/* Botón de idioma: pill ghost con borde acento */
 #language-toggle {
   font: inherit;
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
   padding: var(--space-1) var(--space-3);
-  border: 2px solid var(--color-accent);
-  border-radius: var(--radius);
-  background-color: var(--color-bg);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-pill);
+  background-color: transparent;
   color: var(--color-accent);
   cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
 }
 
 #language-toggle:hover {
   background-color: var(--color-accent);
-  color: var(--color-bg);
+  color: var(--color-ink);
 }
 
 /* ============================================
    Hero
    ============================================ */
 .hero-role {
-  color: var(--color-text-muted);
-  font-size: var(--font-size-lg);
-  font-weight: 600;
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
+.hero-intro,
+.hero-goal {
+  color: var(--color-text);
+  max-width: 46rem;
+}
+
+.hero-goal {
+  color: var(--color-text-muted);
+}
+
+/* --- Terminal decorativa del hero --- */
+.hero-terminal {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-bg-terminal);
+  overflow: hidden;
+  max-width: 46rem;
+}
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.terminal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-border);
+}
+
+/* Tres tonos para los puntos decorativos */
+.terminal-dot:nth-child(1) { background-color: #ff5f56; }
+.terminal-dot:nth-child(2) { background-color: #ffbd2e; }
+.terminal-dot:nth-child(3) { background-color: #27c93f; }
+
+.terminal-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-inline-start: var(--space-2);
+}
+
+.hero-terminal pre {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  overflow-x: auto;
+}
+
+.hero-terminal code {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  white-space: pre;
+}
+
+/* Colores de resaltado del terminal (texto decorativo) */
+.t-prompt { color: var(--color-accent); }
+.t-string { color: var(--color-text); }
+.t-key { color: var(--color-accent); font-weight: 500; }
+
+/* --- CTAs: pill primario + pill ghost --- */
 .hero-actions a {
   display: inline-block;
   padding: var(--space-2) var(--space-4);
-  border: 2px solid var(--color-accent);
-  border-radius: var(--radius);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-pill);
   font-weight: 600;
+  font-size: var(--font-size-sm);
   text-decoration: none;
+  transition: background-color 150ms ease, color 150ms ease, box-shadow 150ms ease;
 }
 
-.hero-actions a:hover {
+/* Primario (primer CTA) */
+.hero-actions a:first-child {
   background-color: var(--color-accent);
-  color: var(--color-bg);
+  color: var(--color-ink);
+}
+
+.hero-actions a:first-child:hover {
+  background-color: var(--color-accent-hover);
+  color: var(--color-ink);
+}
+
+/* Ghost (segundo CTA) */
+.hero-actions a:last-child {
+  background-color: transparent;
+  color: var(--color-accent);
+}
+
+.hero-actions a:last-child:hover {
+  box-shadow: var(--glow-accent);
 }
 
 /* ============================================
@@ -107,8 +201,15 @@ nav a:hover {
 .project-card {
   background-color: var(--color-bg-alt);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   padding: var(--space-4);
+  transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+}
+
+.project-card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: var(--glow-accent);
 }
 
 .project-card h3 {
@@ -116,12 +217,13 @@ nav a:hover {
 }
 
 .project-description {
-  color: var(--color-text-muted);
+  color: var(--color-text);
   font-weight: 600;
   margin-bottom: var(--space-2);
 }
 
 .project-explanation {
+  color: var(--color-text-muted);
   margin-bottom: var(--space-3);
 }
 
@@ -132,11 +234,16 @@ nav a:hover {
   margin-bottom: var(--space-3);
 }
 
+/* Chips de stack: mono, uppercase, radius 4px (componente Stitch) */
 .project-tags li {
   background-color: var(--color-tag-bg);
-  border-radius: var(--radius);
-  padding: 0.1rem var(--space-2);
-  font-size: var(--font-size-sm);
+  color: var(--color-tag-text);
+  border-radius: 4px;
+  padding: 0.15rem var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .project-links {
@@ -154,6 +261,16 @@ nav a:hover {
    ============================================ */
 .skill-group h3 {
   margin-bottom: var(--space-2);
+}
+
+/* Títulos de categoría con estilo de metadato técnico */
+#skills .skill-group h3 {
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .skill-list {
@@ -185,14 +302,12 @@ nav a:hover {
 /* ============================================
    Foco visible en interactivos (RNF-1) —
    ya definido globalmente en base.css con :focus-visible;
-   aquí solo se refuerza el contraste del foco sobre fondos oscuros
-   de botones con estado hover (fondo acento).
+   aquí solo se refuerza el offset sobre elementos pill.
    ============================================ */
 #language-toggle:focus-visible,
 .hero-actions a:focus-visible,
 #nav-toggle:focus-visible {
-  outline-color: var(--color-accent-hover);
-  outline-offset: 3px;
+  outline-offset: 4px;
 }
 
 /* ============================================

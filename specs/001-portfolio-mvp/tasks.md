@@ -102,6 +102,13 @@
   **Hecho cuando:** en escritorio no aparece el hamburguesa y, sin JavaScript, la navegación es visible y operable en cualquier ancho de pantalla.
   **Resultado:** `components.css` ampliado con media query ≥48em: `#nav-toggle { display: none }` y `#primary-nav { display: block }` (confirmado en CSSOM y en el archivo servido; el enfoque escritorio-no-plegable hace innecesario otro fallback ahí). Fallback sin JS verificado en móvil: al quitar `.js-enabled`, la nav vuelve a `display: block` con los 4 enlaces ancla operables. Captura: hamburguesa + botón idioma en móvil, panel colapsado por defecto. Fase 4 completa.
 
+## Fase 6 — Restyle «Terminal Teal» (post-MVP, spec 002)
+
+- [x] **R-01 — Restyle visual «Terminal Teal»** *(inspirado en el proyecto Stitch «Developer Portfolio Design System»; no altera ningún RF del MVP)* ✅ 2026-09-08
+  Reestilizado completo del sitio con el sistema de diseño «Terminal Teal»: tema oscuro (superficies `#04151f`/`#0c1d28`, hero y footer en `#001e2b`), acento verde terminal `#00ed64`, tipografías Inter + JetBrains Mono (Google Fonts CDN, `display=swap`, fallback a system-ui/monospace), hero tipo terminal `mongosh` con datos reales del titular (bilingüe), CTAs pill (primario sólido + ghost), tarjetas de proyecto con hover-glow verde, chips de stack monoespaciados uppercase y skills con títulos de categoría en mono.
+  **Hecho cuando:** los nuevos tokens cumplen contraste AA medido programáticamente, la página no tiene overflow horizontal en móvil, el toggle ES/EN sigue funcionando (RF-2) y sin JS todo el contenido en español es visible (RF-7).
+  **Resultado:** plan registrado en `specs/001-portfolio-mvp/002-restyle-terminal-teal/plan.md`. Contraste verificado (WCAG 2.1 calculado): texto/bg 14.38:1, muted/bg 6.92:1, accent/bg 11.74:1, ink/botón 10.89:1, chips 6.64:1 — todos ≥ AA. Toggle ES/EN verificado en navegador (21/21 bloques por idioma, `lang` y etiqueta del botón correctos). Sin overflow horizontal (scrollWidth ≤ innerWidth). Consola limpia; fuentes Inter y JetBrains Mono cargadas (document.fonts). Peso total transferido ≈ 17.8 KB + fuentes del CDN. Mecanismo `[hidden]{display:none!important}` intacto (bloques EN ocultos verificados).
+
 ## Fase 5 — Verificación y publicación
 
 - [ ] **T-18 — Recorrido completo de la matriz de verificación** *(cubre todos los RF, RNF y LC)*

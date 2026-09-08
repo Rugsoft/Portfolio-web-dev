@@ -1,6 +1,7 @@
 /* ============================================
    layout.css — contenedor, secciones y estructura responsive
-   T-09 · Mobile-first (RNF-3): base ≈375 px, ampliar hacia escritorio
+   Restyle «Terminal Teal» (spec 002): alternancia de superficies,
+   hero y footer en teal profundo. Mobile-first (RNF-3).
    ============================================ */
 
 /* --- Contenedor central --- */
@@ -33,11 +34,16 @@ main section:first-of-type {
   padding-block-start: var(--space-4);
 }
 
-/* --- Hero --- */
+/* --- Hero: superficie profunda (canvas-dark del tema) --- */
 #inicio {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
+  background-color: var(--color-bg-deep);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin-block-start: var(--space-2);
 }
 
 .hero-actions {
@@ -66,7 +72,7 @@ main section:first-of-type {
   gap: var(--space-2);
 }
 
-/* --- Footer --- */
+/* --- Footer: banda profunda, espejo del hero --- */
 footer {
   border-top: 1px solid var(--color-border);
   color: var(--color-text-muted);
@@ -108,7 +114,7 @@ footer {
     column-gap: var(--space-5);
   }
 
-  #inicio {
-    max-width: 46rem;
+  #inicio > [data-lang] {
+    max-width: 52rem;
   }
 }

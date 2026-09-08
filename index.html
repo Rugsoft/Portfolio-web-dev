@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Portfolio de César Casas Insa, desarrollador web junior front-end / back-end PHP. Proyectos, skills y contacto.">
   <title>César Casas Insa — Desarrollador Web</title>
+  <!-- Restyle «Terminal Teal» (spec 002): Inter + JetBrains Mono con display=swap
+       y fallback a system-ui / monospace si el CDN no responde (RNF-2). -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="./assets/css/main.css">
   <script type="module" src="./assets/js/main.js"></script>
 </head>
@@ -51,6 +56,23 @@
           Busco incorporarme como desarrollador web junior o en estancia de prácticas,
           aportando compromiso, madurez profesional y orientación a soluciones eficientes.
         </p>
+        <!-- Terminal decorativa del restyle «Terminal Teal» (spec 002):
+             solo datos reales del titular, sin métricas ficticias. -->
+        <figure class="hero-terminal" aria-hidden="false">
+          <figcaption class="terminal-bar" aria-hidden="true">
+            <span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-dot"></span>
+            <span class="terminal-title">cesar@portfolio — mongosh</span>
+          </figcaption>
+          <pre><code><span class="t-prompt">cesar@portfolio&gt;</span> db.developer.findOne({ status: <span class="t-string">"open_to_work"</span> })
+{
+  nombre: <span class="t-string">"César Casas Insa"</span>,
+  rol: <span class="t-string">"Desarrollador Web Junior · Front-End / Back-End PHP"</span>,
+  ubicacion: <span class="t-string">"Sant Adrià de Besòs (Barcelona)"</span>,
+  stack: [<span class="t-string">"PHP 8"</span>, <span class="t-string">"JavaScript Vanilla"</span>, <span class="t-string">"MariaDB / MySQL"</span>, <span class="t-string">"HTML5"</span>, <span class="t-string">"CSS3"</span>],
+  metodologia: <span class="t-string">"SDD — Spec-Driven Development"</span>,
+  estado: <span class="t-key">AVAILABLE_FOR_JUNIOR_ROLES_AND_INTERNSHIPS</span>
+}</code></pre>
+        </figure>
         <p class="hero-actions">
           <a href="#proyectos">Ver mis proyectos</a>
           <a href="#contacto">Contactar</a>
@@ -73,6 +95,23 @@
           I am looking to join a team as a junior web developer or intern, bringing commitment,
           professional maturity and a focus on efficient solutions.
         </p>
+        <!-- Decorative terminal from the «Terminal Teal» restyle (spec 002):
+             real data only, no invented metrics. -->
+        <figure class="hero-terminal" aria-hidden="false">
+          <figcaption class="terminal-bar" aria-hidden="true">
+            <span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-dot"></span>
+            <span class="terminal-title">cesar@portfolio — mongosh</span>
+          </figcaption>
+          <pre><code><span class="t-prompt">cesar@portfolio&gt;</span> db.developer.findOne({ status: <span class="t-string">"open_to_work"</span> })
+{
+  name: <span class="t-string">"César Casas Insa"</span>,
+  role: <span class="t-string">"Junior Web Developer · Front-End / Back-End PHP"</span>,
+  location: <span class="t-string">"Sant Adrià de Besòs (Barcelona)"</span>,
+  stack: [<span class="t-string">"PHP 8"</span>, <span class="t-string">"Vanilla JavaScript"</span>, <span class="t-string">"MariaDB / MySQL"</span>, <span class="t-string">"HTML5"</span>, <span class="t-string">"CSS3"</span>],
+  methodology: <span class="t-string">"SDD — Spec-Driven Development"</span>,
+  status: <span class="t-key">AVAILABLE_FOR_JUNIOR_ROLES_AND_INTERNSHIPS</span>
+}</code></pre>
+        </figure>
         <p class="hero-actions">
           <a href="#proyectos">View my projects</a>
           <a href="#contacto">Get in touch</a>
