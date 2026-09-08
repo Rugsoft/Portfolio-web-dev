@@ -16,9 +16,10 @@
 
 > **Nota para T-02–T-06:** mientras T-01 no esté completada, todo el contenido que se añada en esta fase debe ser **placeholder marcado como tal** (comentario HTML `<!-- PLACEHOLDER: sustituir con datos reales de T-01 -->`), nunca datos ficticios que parezcan reales (Artículo IV, RNF-5).
 
-- [ ] **T-02 — Crear el esqueleto semántico de `index.html`** *(cubre RF-1)*
+- [x] **T-02 — Crear el esqueleto semántico de `index.html`** *(cubre RF-1)* ✅ 2026-09-08
   `<!doctype html>` con `lang="es"`, metadatos, `header` (nav + selector de idioma), `main` con las 4 secciones (`#inicio`, `#proyectos`, `#skills`, `#contacto`) y `footer`.
   **Hecho cuando:** la página se sirve con un servidor estático, la estructura semántica es correcta y las 4 secciones existen con sus identificadores.
+  **Resultado:** `index.html` creado con estructura semántica completa (`header`/`nav`/`main`/`footer`, 4 secciones con ids, botón de idioma presente para cablear en T-12/T-14). Verificado con `python -m http.server`: HTTP 200 y las 4 secciones presentes. Sin CSS/JS referenciados todavía (se crean en T-08+/T-12+) para evitar 404.
 
 - [ ] **T-03 — Contenido del hero en ambos idiomas** *(cubre RF-1, RF-7)*
   Quién es el autor, a qué se dedica y llamada a la acción hacia proyectos/contacto, duplicado en bloques `es`/`en` (bloque español visible por defecto; el inglés oculto con el atributo nativo `hidden`, sin depender de CSS).
