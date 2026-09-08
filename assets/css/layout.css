@@ -1,0 +1,99 @@
+/* ============================================
+   layout.css — contenedor, secciones y estructura responsive
+   T-09 · Mobile-first (RNF-3): base ≈375 px, ampliar hacia escritorio
+   ============================================ */
+
+/* --- Contenedor central --- */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-3);
+}
+
+/* Header y footer dentro del flujo del contenedor */
+header,
+footer {
+  padding-block: var(--space-3);
+}
+
+main {
+  display: block;
+}
+
+/* --- Secciones --- */
+section[id] {
+  padding-block: var(--space-5);
+  border-top: 1px solid var(--color-border);
+}
+
+/* La primera sección (hero) no lleva borde superior */
+main section:first-of-type {
+  border-top: none;
+  padding-block-start: var(--space-4);
+}
+
+/* --- Hero --- */
+#inicio {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+/* --- Proyectos: tarjetas apiladas en móvil --- */
+#proyectos .project-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-block: var(--space-4);
+}
+
+/* --- Skills: grupos apilados en móvil --- */
+#skills .skill-group {
+  padding-block: var(--space-3);
+}
+
+/* --- Contacto --- */
+#contacto .contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* --- Footer --- */
+footer {
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+/* ============================================
+   Escritorio (T-11): grid ampliado y espaciado superior
+   ============================================ */
+@media (min-width: 48em) {
+  .container {
+    padding-inline: var(--space-4);
+  }
+
+  section[id] {
+    padding-block: var(--space-6);
+  }
+
+  /* Proyectos en cuadrícula de 2 columnas */
+  #proyectos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--space-4);
+  }
+
+  #proyectos h2 {
+    grid-column: 1 / -1;
+  }
+}
+

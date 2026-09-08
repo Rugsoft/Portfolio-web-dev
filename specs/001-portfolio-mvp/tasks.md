@@ -52,9 +52,10 @@
   Reset breve + custom properties en `:root` (colores, tipografía, espaciado, radios).
   **Hecho cuando:** `main.css` importa `base.css`, ningún estilo usa valores mágicos de color/espaciado y la página hereda tipografía y colores de las variables.
 
-- [ ] **T-09 — `layout.css`: contenedor y secciones mobile-first** *(cubre RNF-3)*
+- [x] **T-09 — `layout.css`: contenedor y secciones mobile-first** *(cubre RNF-3)* ✅ 2026-09-08
   Contenedor central, espaciado entre secciones y base estilizada para ≈375 px.
   **Hecho cuando:** a 375 px de ancho el contenido se lee cómodamente sin desbordes ni scroll horizontal.
+  **Resultado:** `assets/css/layout.css` creado e importado en `main.css`: contenedor central (max-width del token, padding inline), secciones con espaciado y separador, hero/proyectos/skills/contacto en flujo vertical de columna única, footer diferenciado, y media query de escritorio (48em) con grid de 2 columnas para proyectos. HTML ajustado: `div.container` envuelve header/main/footer. Verificado en navegador real: 0 elementos desbordando, sin scroll horizontal, contenido legible en columna única a ancho móvil.
 
 - [ ] **T-10 — `components.css`: nav, tarjetas y listas** *(cubre RF-1, RF-4, RF-5, RNF-1)*
   Estilos de navegación, tarjetas de proyecto y grupos de skills, con estados hover/focus visibles y `alt` correcto respetado en toda imagen.
