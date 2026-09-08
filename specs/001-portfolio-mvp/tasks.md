@@ -90,6 +90,8 @@
 
 ## Fase 4 — Navegación
 
+> **Bugfix 2026-09-08 (hallado al verificar skills bilingües):** las 6 listas `.skill-list` del inglés se mostraban pese a tener `hidden`: la regla `.skill-list { display: flex }` de components.css (especificidad de autor) anulaba el `display: none` del estilo UA de `[hidden]`. Fix en `base.css`: `[hidden] { display: none !important; }` con comentario explicativo. Re-verificado en navegador: 0 bloques en visibles en español, cambio bidireccional correcto (21/21 en cada idioma) y skills sin duplicados.
+
 - [ ] **T-16 — Menú hamburguesa accesible en móvil** *(cubre RF-1, RNF-1, TD-6)*
   Botón hamburguesa con `aria-expanded`, panel de enlaces que se muestra/oculta, cierre con Escape y navegación completa por teclado.
   **Hecho cuando:** el menú abre y cierra por clic y por teclado, el estado expandido se declara correctamente y todos sus enlaces son accesibles por tabulación.

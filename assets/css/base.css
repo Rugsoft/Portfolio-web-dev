@@ -68,6 +68,15 @@ svg {
   max-width: 100%;
 }
 
+/* El atributo hidden SIEMPRE oculta (RF-2/LC-1): las reglas de display
+   de componentes (p. ej. .skill-list { display: flex }) tienen más
+   especificidad que el display:none del estilo UA de [hidden], y lo
+   anularían. Esta regla lo restaura con la misma especificidad de
+   autor y declarada después. */
+[hidden] {
+  display: none !important;
+}
+
 /* --- Tipografía base --- */
 h1,
 h2,
