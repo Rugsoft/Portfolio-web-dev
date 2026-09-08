@@ -22,7 +22,49 @@
 
   <main>
     <section id="inicio" aria-label="Presentación">
-      <!-- T-03: contenido del hero en ambos idiomas -->
+      <!-- Bloque español (visible por defecto). El inglés se oculta con el atributo nativo
+           `hidden` (T-03/TD-3): sin CSS ni JS, solo el español es visible (RF-7). -->
+      <div lang="es" data-lang="es">
+        <h1>César Casas Insa</h1>
+        <p class="hero-role">Desarrollador Web Junior · Front-End / Back-End PHP</p>
+        <p class="hero-intro">
+          Profesional con amplia trayectoria técnica en electrónica, producción y compras,
+          en proceso de consolidación en el desarrollo web. Combino una base técnica sólida,
+          alta capacidad analítica y experiencia contrastada en resolución de problemas con
+          formación especializada reciente en programación web y metodologías de desarrollo
+          guiado por especificaciones (SDD).
+        </p>
+        <p class="hero-goal">
+          Busco incorporarme como desarrollador web junior o en estancia de prácticas,
+          aportando compromiso, madurez profesional y orientación a soluciones eficientes.
+        </p>
+        <p class="hero-actions">
+          <a href="#proyectos">Ver mis proyectos</a>
+          <a href="#contacto">Contactar</a>
+        </p>
+      </div>
+
+      <!-- Bloque inglés (mismo contenido, oculto por defecto con `hidden`).
+           T-12 lo alterna mediante el mismo atributo (RF-2). -->
+      <div lang="en" data-lang="en" hidden>
+        <h1>César Casas Insa</h1>
+        <p class="hero-role">Junior Web Developer · Front-End / Back-End PHP</p>
+        <p class="hero-intro">
+          A professional with extensive technical experience in electronics, production and
+          purchasing, currently consolidating a career in web development. I combine a solid
+          technical foundation, strong analytical skills and proven problem-solving experience
+          with recent specialized training in web programming and specification-driven
+          development methodologies (SDD).
+        </p>
+        <p class="hero-goal">
+          I am looking to join a team as a junior web developer or intern, bringing commitment,
+          professional maturity and a focus on efficient solutions.
+        </p>
+        <p class="hero-actions">
+          <a href="#proyectos">View my projects</a>
+          <a href="#contacto">Get in touch</a>
+        </p>
+      </div>
     </section>
 
     <section id="proyectos" aria-label="Proyectos">
