@@ -1,0 +1,124 @@
+/* ============================================
+   base.css — reset mínimo y tokens de diseño
+   T-08 · Plan TD-5 (tema claro único, preparado para tema oscuro)
+   ============================================ */
+
+/* --- Tokens de diseño (custom properties en :root) --- */
+:root {
+  /* Colores — tema claro */
+  --color-bg: #ffffff;              /* fondo general */
+  --color-bg-alt: #f4f6f8;          /* fondo alternante (secciones, tarjetas) */
+  --color-text: #1c2b33;            /* texto principal (contraste 13.9:1 sobre bg) */
+  --color-text-muted: #52606d;      /* texto secundario (contraste 6.9:1) */
+  --color-accent: #0b5cad;          /* acento / enlaces (contraste 6.4:1) */
+  --color-accent-hover: #08436f;    /* acento hover (contraste 9.4:1) */
+  --color-border: #d5dbe1;          /* bordes sutiles */
+  --color-tag-bg: #e8eef4;          /* fondo de etiquetas/chips */
+
+  /* Tipografía */
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-size-base: 1rem;           /* 16 px */
+  --font-size-sm: 0.875rem;         /* 14 px */
+  --font-size-lg: 1.25rem;          /* 20 px */
+  --font-size-h3: 1.35rem;
+  --font-size-h2: 1.85rem;
+  --font-size-h1: 2.3rem;
+  --line-height: 1.65;
+
+  /* Espaciado (escala modular) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2.5rem;
+  --space-6: 4rem;
+
+  /* Otros */
+  --radius: 8px;
+  --max-width: 62rem;
+}
+
+/* --- Reset mínimo --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-text-size-adjust: 100%;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* --- Tipografía base --- */
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  overflow-wrap: break-word;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+}
+
+p {
+  overflow-wrap: break-word;
+}
+
+/* --- Enlaces --- */
+a {
+  color: var(--color-accent);
+  text-decoration-thickness: from-font;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+/* --- Foco visible obligatorio (RNF-1) --- */
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* --- Preferencia de movimiento reducido --- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* --- Listas base --- */
+ul {
+  padding: 0;
+  list-style: none;
+}

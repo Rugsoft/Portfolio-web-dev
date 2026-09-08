@@ -48,7 +48,7 @@
 
 ## Fase 2 — CSS
 
-- [ ] **T-08 — `base.css`: reset mínimo y tokens de diseño** *(cubre RNF-1, TD-5)*
+- [x] **T-08 — `base.css`: reset mínimo y tokens de diseño** *(cubre RNF-1, TD-5)* ✅ 2026-09-08
   Reset breve + custom properties en `:root` (colores, tipografía, espaciado, radios).
   **Hecho cuando:** `main.css` importa `base.css`, ningún estilo usa valores mágicos de color/espaciado y la página hereda tipografía y colores de las variables.
 

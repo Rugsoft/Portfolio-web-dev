@@ -1,0 +1,8 @@
+/* ============================================
+   main.css — punto de entrada de estilos
+   Importa las capas en orden de preocupación (AGENTS.md §3)
+   ============================================ */
+
+@import "./base.css";
+/* T-09: @import "./layout.css"; */
+/* T-10: @import "./components.css"; */
