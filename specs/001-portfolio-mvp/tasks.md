@@ -57,10 +57,11 @@
   **Hecho cuando:** a 375 px de ancho el contenido se lee cómodamente sin desbordes ni scroll horizontal.
   **Resultado:** `assets/css/layout.css` creado e importado en `main.css`: contenedor central (max-width del token, padding inline), secciones con espaciado y separador, hero/proyectos/skills/contacto en flujo vertical de columna única, footer diferenciado, y media query de escritorio (48em) con grid de 2 columnas para proyectos. HTML ajustado: `div.container` envuelve header/main/footer. Verificado en navegador real: 0 elementos desbordando, sin scroll horizontal, contenido legible en columna única a ancho móvil.
 
-- [ ] **T-10 — `components.css`: nav, tarjetas y listas** *(cubre RF-1, RF-4, RF-5, RNF-1)*
+- [x] **T-10 — `components.css`: nav, tarjetas y listas** *(cubre RF-1, RF-4, RF-5, RNF-1)* ✅ 2026-09-08
   Estilos de navegación, tarjetas de proyecto y grupos de skills, con estados hover/focus visibles y `alt` correcto respetado en toda imagen.
   **Hecho cuando:** los componentes son distinguibles visualmente y el foco del teclado es claramente visible en todos los elementos interactivos.
 
+  **Resultado:** `assets/css/components.css` creado e importado en `main.css`: nav en flex con hover con fondo, botón de idioma con borde de acento y hover invertido, CTAs del hero tipo botón, tarjetas de proyecto con fondo alternante/borde/radius y tags como chips, skills con marcador ▸ de acento, y refuerzo de foco sobre fondos oscuros. Regla global `:focus-visible` (3px acento) confirmada en CSSOM; 4 reglas `:hover` activas. Sin imágenes aún: requisito `alt` se mantiene para cuando las haya. Verificado en navegador real (captura incluida).
 - [ ] **T-11 — Escritorio y verificación de contraste** *(cubre RNF-1, RNF-3)*
   Media queries hacia pantallas grandes (grid ampliado) y revisión de contraste de texto/fondo. Comprobar también el peso de la página: imágenes optimizadas, sin recursos innecesarios (RNF-2).
   **Hecho cuando:** el layout se ve correcto a 375 px y en escritorio (≥1200 px), las combinaciones de color cumplen contraste suficiente para texto normal y el peso total de la página se mantiene reducido.
