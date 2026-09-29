@@ -87,6 +87,64 @@ Al añadir un proyecto al contenido (en `index.html`, ver excepción de §4), ca
 
 Las explicaciones deben escribirse en primera persona y de forma concreta, evitando frases genéricas tipo "página web moderna".
 
+**Nunca contenido de relleno.** Un proyecto sin datos reales no se añade: se pide al titular (constitución, Artículo IV). Nunca inventar nombres, URLs ni descripciones que parezcan reales.
+
+#### Procedimiento exacto
+
+1. **Datos.** Rellenar la plantilla de arriba con datos reales y verificar que cada enlace responde HTTP 200.
+2. **Captura.** Copiar el archivo a `assets/img/<nombre-del-proyecto>.png` (minúsculas, sin espacios ni acentos, §7). Leer sus dimensiones **reales** y volcarlas en los atributos `width`/`height` del `img` (evita CLS; no estimar). Controlar el peso (RNF-2): por encima de ~300 KB, convertir a WebP o avisar antes de decidir.
+3. **Tarjeta.** Duplicar la estructura de un `article.project-card` existente y añadirla al final de `#proyectos`, justo antes de su `</section>`:
+
+   ```html
+   <!-- Proyecto N: Nombre (nota: repo privado / sin demo si aplica) -->
+   <article class="project-card">
+     <div lang="es" data-lang="es">
+       <figure class="project-media">
+         <img src="./assets/img/nombre.png" alt="Qué se ve en la captura, en español" loading="lazy" decoding="async" width="1860" height="917">
+       </figure>
+       <h3>Nombre</h3>
+       <p class="project-description">Descripción breve en español.</p>
+       <p class="project-explanation">Qué problema resuelve, con qué stack y qué se implementó, en primera persona.</p>
+       <ul class="project-tags">
+         <li>Tecnología</li><li>Otra</li>
+       </ul>
+       <p class="project-links">
+         <a href="https://github.com/usuario/repo" target="_blank" rel="noopener">Repositorio</a>
+         <a href="https://demo.example.com" target="_blank" rel="noopener">Ver demo</a>
+       </p>
+     </div>
+     <div lang="en" data-lang="en" hidden>
+       <figure class="project-media">
+         <img src="./assets/img/nombre.png" alt="What the screenshot shows, in English" loading="lazy" decoding="async" width="1860" height="917">
+       </figure>
+       <h3>Nombre</h3>
+       <p class="project-description">Short description in English.</p>
+       <p class="project-explanation">The problem it solves, the stack and what was implemented, in first person.</p>
+       <ul class="project-tags">
+         <li>Technology</li><li>Another</li>
+       </ul>
+       <p class="project-links">
+         <a href="https://github.com/user/repo" target="_blank" rel="noopener">Repository</a>
+         <a href="https://demo.example.com" target="_blank" rel="noopener">View demo</a>
+       </p>
+     </div>
+   </article>
+   ```
+
+4. **Invariantes que no se pueden romper** (todo el valor de este procedimiento está aquí):
+
+   - **Dos bloques por tarjeta, siempre**: `data-lang="es"` visible y `data-lang="en"` con `hidden`. Es el mecanismo TD-3; el JS solo alterna ese atributo, no selecciona textos.
+   - **LC-8 / RNF-4**: el inglés se escribe en el *mismo* cambio que el español. Nunca dejar un idioma desactualizado, ni siquiera "temporalmente".
+   - **Textos de los enlaces traducidos**: `Repositorio`/`Repository`, `Ver demo`/`View demo`.
+   - **Etiquetas traducidas solo si son palabras**: `Gamificación`/`Gamification`, `Calendario`/`Calendar`. Los nombres de tecnología (`PHP 8`, `MariaDB`, `MySQL`) van iguales en ambos bloques.
+   - **`alt` traducido y descriptivo** en cada bloque (obligatorio, §3).
+   - **Correspondencia posicional**: los elementos de `es` y `en` se emparejan por posición. Si se añade un elemento en un idioma, se añade su equivalente en el otro.
+   - **Rutas relativas** para assets (`./assets/img/...`); absolutas solo para enlaces externos, para que funcione bajo el subdirectorio de GitHub Pages (§7).
+   - **LC-3**: si no hay repo o demo, se omite ese `<a>`. Nunca un enlace roto ni un hueco vacío.
+   - **Sin CSS ni JS nuevos**: el grid de 2 columnas de `assets/css/layout.css` y los estilos de `.project-card` ya son genéricos. Con 6 tarjetas quedan 3 filas simétricas en escritorio y una pila limpia en móvil. Solo habría que tocar CSS si se quisiera un layout que no sea la rejilla de 2 columnas.
+
+5. **Verificar** con el checklist de §6, prestando atención a estos puntos concretos: el recuento de `article.project-card` coincide con el número de proyectos; `#proyectos [data-lang="es"]` visibles y `[data-lang="en"][hidden]` están en igual número; ningún `img` roto (`naturalWidth > 0`); sin desbordamiento horizontal a 375 px; el selector de idioma conmuta los bloques nuevos a la vez.
+
 ### Añadir skills
 
 - Agrupar por categorías (lenguajes, frameworks, herramientas, conceptos).
