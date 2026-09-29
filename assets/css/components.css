@@ -328,10 +328,10 @@ nav a:hover {
    Skills
    ============================================ */
 
-/* --- Titulos de seccion con prompt de terminal ---
+/* --- Títulos de sección con prompt de terminal ---
    La identidad «Terminal Teal» vivia solo en el hero; despues, todo era
    Inter sobre tarjetas grises. Un prompt «$» delante de cada titulo
-   arrastra el concepto al resto de la pagina sin anadir HTML. */
+   arrastra el concepto al resto de la página sin añadir HTML. */
 #proyectos h2::before,
 #skills h2::before,
 #contacto h2::before {

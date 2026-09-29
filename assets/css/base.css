@@ -62,7 +62,7 @@
 html {
   scroll-behavior: smooth;
   /* La cabecera es sticky: sin este respiro, los anchors de la nav
-     (#proyectos, #skills, #contacto) aterrizan con el titulo de seccion
+     (#proyectos, #skills, #contacto) aterrizan con el título de sección
      escondido debajo de la barra. */
   scroll-padding-top: 5rem;
 }
