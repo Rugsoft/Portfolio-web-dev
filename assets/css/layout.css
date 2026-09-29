@@ -18,6 +18,22 @@ footer {
   padding-block: var(--space-3);
 }
 
+/* --- Cabecera sticky ---
+   En una pagina de ~5.300 px (9.600 px en movil) el selector ES/EN y los
+   anchors de la nav solo eran alcanzables en el primer pantallazo. Se fija
+   con sangrado negativo para que la barra llegue al borde del viewport
+   aunque el header viva dentro de .container. */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  margin-inline: calc(-1 * var(--space-3));
+  padding-inline: var(--space-3);
+  padding-block: var(--space-2);
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
 main {
   display: block;
 }
@@ -48,20 +64,22 @@ section[id] + section[id]::before,
 #contacto::before {
   content: "///";
   position: absolute;
-  /* Centrado real en el hueco de 40px (space-5) entre bloques.
-     line-height:1 hace que la caja mida lo mismo que el glifo y
-     -50% del margen lo deja equidistante del bloque anterior y del border. */
+  /* Centrado real en el hueco de 40px (space-5) entre bloques, y
+     centrado en horizontal sobre el eje de la pagina. line-height:1 hace
+     que la caja mida lo mismo que el glifo y -50% del margen lo deja
+     equidistante del bloque anterior y del border. El padding a ambos
+     lados es lo que corta la linea del border para dejar el hueco. */
   top: calc(-1 * (var(--space-5) / 2));
   line-height: 1;
-  transform: translateY(-50%);
-  inset-inline-start: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-family: var(--font-mono);
   font-size: var(--font-size-sm);
   letter-spacing: 0.4em;
   color: var(--color-accent);
   opacity: 0.55;
   background-color: var(--color-bg);
-  padding-inline-end: var(--space-2);
+  padding-inline: var(--space-2);
 }
 
 /* La primera sección (hero) no lleva borde superior ni separador */
@@ -123,6 +141,9 @@ footer {
   border-top: 1px solid var(--color-border);
   color: var(--color-text-muted);
   font-size: var(--font-size-sm);
+  /* Respiraba 16px frente a los 72px de las secciones: rompia el ritmo
+     justo en el cierre de la pagina. */
+  padding-block: var(--space-4);
 }
 
 /* ============================================
@@ -131,6 +152,16 @@ footer {
 @media (min-width: 48em) {
   .container {
     padding-inline: var(--space-4);
+  }
+
+  /* Sangria del sticky acorde al padding del contenedor en escritorio */
+  header {
+    margin-inline: calc(-1 * var(--space-4));
+    padding-inline: var(--space-4);
+  }
+
+  footer {
+    padding-block: var(--space-5);
   }
 
   /* Respiro extra en escritorio: secciones más aireadas que en móvil */

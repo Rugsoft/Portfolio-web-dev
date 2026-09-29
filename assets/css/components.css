@@ -212,8 +212,13 @@ nav a:hover {
   box-shadow: var(--glow-accent);
 }
 
+/* El nombre del proyecto es el elemento mas fuerte de la tarjeta.
+   Antes pesaba 500 y su propia descripcion (600 en blanco) le ganaba
+   visualmente: la jerarquia estaba invertida. */
 .project-card h3 {
   margin-bottom: var(--space-1);
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 /* --- Imagen del proyecto (R-02) ---
@@ -241,7 +246,7 @@ nav a:hover {
 
 .project-description {
   color: var(--color-text);
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: var(--space-2);
 }
 
@@ -269,19 +274,73 @@ nav a:hover {
   text-transform: uppercase;
 }
 
+/* El article .project-card declara flex column, pero sus hijos reales no
+   son los elementos sueltos: son los dos bloques de idioma (mecanismo
+   TD-3). Por eso el `gap` de la tarjeta nunca se aplico y el ritmo vertical
+   depende de margenes sueltos. El flex column tiene que vivir en el bloque
+   de idioma para que margin-top:auto pueda empujar los enlaces al pie. */
+.project-card > [data-lang] {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+/* Los enlaces se empujan al pie de la tarjeta. La grid estira todas las
+   tarjetas a la altura de su fila, y sin esto quedaban hasta 130px de
+   hueco muerto bajo el contenido mas corto. Asi los pies quedan a la
+   misma altura y el espacio sobrante se reparte en el medio. */
 .project-links {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-3);
+  gap: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-2);
 }
 
+/* Enlaces como ordenes de terminal: mono, uppercase, con flecha. Heredan
+   el lenguaje del hero en vez de ser texto subrayado que compite con la
+   descripcion. */
 .project-links a {
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-accent);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.35rem 0.7rem;
+  transition: border-color 150ms ease, background-color 150ms ease, color 150ms ease;
+}
+
+.project-links a::after {
+  content: " \2192";
+}
+
+.project-links a:hover {
+  border-color: var(--color-accent);
+  background-color: var(--color-tag-bg);
+  color: var(--color-accent-hover);
 }
 
 /* ============================================
    Skills
    ============================================ */
+
+/* --- Titulos de seccion con prompt de terminal ---
+   La identidad «Terminal Teal» vivia solo en el hero; despues, todo era
+   Inter sobre tarjetas grises. Un prompt «$» delante de cada titulo
+   arrastra el concepto al resto de la pagina sin anadir HTML. */
+#proyectos h2::before,
+#skills h2::before,
+#contacto h2::before {
+  content: "$";
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--color-accent);
+  margin-inline-end: 0.6ch;
+}
 .skill-group h3 {
   margin-bottom: var(--space-2);
 }
